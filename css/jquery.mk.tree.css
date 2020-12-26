@@ -1,0 +1,71 @@
+div.mk-tree {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  padding:0;
+  margin:0;
+  width:11em;
+}
+/*
+div.mk-tree div {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width:auto;
+}
+*/
+div.mk-tree div div {
+  margin-left:5px;
+}
+div.mk-tree div label {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  width:auto;
+  padding:3px 5px 3px 5px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+/*
+div.mk-tree div label:hover {
+  background-color: #BFBFBF;
+}
+*/
+div.mk-tree i {
+  cursor:default;
+  margin-right:5px;
+}
+div.mk-tree div label.ui-state-highlight {
+  border-width:0;
+}
+
+div.mk-tree div > input[type=checkbox] {
+  display:none;
+}
+div.mk-tree div > input[type=checkbox] + label + div > div {
+  display:none;
+}
+div.mk-tree div > input[type=checkbox]:checked + label + div > div {
+  display:block;
+}
+
+div.mk-tree div > input[type=checkbox] + label i.fa-caret-down,
+div.mk-tree div > input[type=checkbox]:checked + label i.fa-caret-right {
+  display:none;
+}
+
+div.mk-tree div > input[type=checkbox] + label i.fa-caret-right,
+div.mk-tree div > input[type=checkbox]:checked + label i.fa-caret-down {
+  display:inline-block;
+}
+
+div.mk-tree input[data-check="false"] + label i.fa-square-o,
+div.mk-tree input[data-check="true"] + label i.fa-check-square-o {
+  display:inline-block;
+}
+div.mk-tree input[data-check="true"] + label i.fa-square-o,
+div.mk-tree input[data-check="false"] + label i.fa-check-square-o {
+  display:none;
+}
