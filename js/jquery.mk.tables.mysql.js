@@ -835,7 +835,7 @@ var mysqlDataModel = {
         W.push("("+optInp.filtFix+")");
       if(S != ""){
         var cols = [],
-            search = " RLIKE('"+S+"')";
+            search = " RLIKE(\""+S+"\")";
         for(var i in optInp.colModel){
           if(optInp.colModel[i].search)
             cols.push(optInp.colModel[i].indx+search);
