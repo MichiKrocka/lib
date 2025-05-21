@@ -37,8 +37,6 @@ var sqliteDataModel = {
         WHERE_TOTAL = 1,
         WHERE_DEL = 0,
         RetD = {};
-//console.log(fun);
-//console.log("s-in", self.rowIx);
     // .................................................................
     if(typeof this.queryPage == "undefined"){
       var cols = [optInp.ID];
@@ -410,7 +408,6 @@ var sqliteDataModel = {
         ui.val = ui.val.replace(/#TABLE#/g, optInp.SQL_Table);
         ui.val = ui.val.replace(/#WHERE#/g, WHERE);
         ui.val = ui.val.replace(/#RECID#/g, optInp.recId);
-//console.log(this, ui, optInp);
         var o = {
           base: optInp.SQL_Base,
           cmd:  [{
@@ -535,6 +532,7 @@ var sqliteDataModel = {
       WHERE_TOTAL = _make_where_total();
       sgn = ["ID2IX", "TOTAL"];
       var recIdTmp = optInp.recId;
+
       _sql_exec(sgn, function(D){
         if(D.FILTER == 0 || recIdTmp != D.ID2IX.recId){
           optOut.filtSw = optInp.filtSw = false;
@@ -565,9 +563,7 @@ var sqliteDataModel = {
         self.rowIx = 0;
       else if(self.rowIx >= self.Total)
         self.rowIx = self.Total - 1;
-//console.log(optInp.rowIx / optInp.Rows, self.rowIx / optInp.Rows);
       if(parseInt(optInp.rowIx / optInp.Rows) == parseInt(self.rowIx / optInp.Rows)){
-//console.log("H");
         self.rowIx = optInp.rowIx;
         self.Offset = self.rowIx - self.rowIx % optInp.Rows;
         _load_rec();
@@ -575,7 +571,6 @@ var sqliteDataModel = {
       }
       sgn = ["PAGE"];
       self.rowIx = optInp.rowIx;
-//console.log("P");
       self.Offset = self.rowIx - self.rowIx % optInp.Rows;
       _sql_exec(sgn, _load_rec);
     }
@@ -771,7 +766,6 @@ var sqliteDataModel = {
             break;
         }
       }
-//console.log("o", sgn, o.cmd);//return;
       o.cmd = JSON.stringify(o.cmd);
       $.post("/sql", o, function(D){
         if(D.TOTAL)

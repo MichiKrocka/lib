@@ -823,17 +823,12 @@ $.widget("mk.tables", {
     // .................................................................
     function ret(data){
       options = self.option();
-//console.log(options);
-//console.log("ret", fun, data, $.isFunction(options.afterDelete));
-//console.log("ret M", ui, data);
       for(fun_ret in data){
         switch(fun_ret){
           case "PAGE":
-//console.log(data[fun_ret][0].id);
             self.refreshPage();
             break;
           case "REC":
-//console.log(self.refreshRec, data);
             if($.isFunction(options.beforeRefreshRec))
               self.options.beforeRefreshRec(null, data, function(){
                 self.refreshRec();
@@ -842,7 +837,7 @@ $.widget("mk.tables", {
               self.refreshRec();
             break;
           case "ERROR":
-          console.log("err", data);
+            log("err", data);
             break;
         }
       }
@@ -1520,7 +1515,6 @@ $.widget("mk.tables", {
         class: "REMOVE",
         text: options.i18n("Remove"),
         click: function(){
-//console.log("REMOVE", ix, filters[ix], filters[ix].name);
           self.options.dataModel._exec(
             "FILTER_DELETE",{
               options: options,
@@ -2711,7 +2705,8 @@ $.widget("mk.tables", {
             else
               data[this.name] = $(this).val();
           });
-          self._exec(insert ? "INSERT" : "UPDATE", {data: data, object: self});
+          if (!$.isEmptyObject(data))
+            self._exec(insert ? "INSERT" : "UPDATE", {data: data, object: self});
         }
       },{
         tabindex: "201",
@@ -2940,8 +2935,6 @@ $.widget("mk.tables", {
       if(options.Filter == 0)
         D = [];
 
-//console.log(D.length, D, options.REC);
-//      self._trigger("beforeRefreshRec", null, {form: F, REC: D});
       $(GRID_FORM_ELEMENT, F)
       .each(function(){
         if($(this).hasClass("object"))
